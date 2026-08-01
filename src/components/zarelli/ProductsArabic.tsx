@@ -125,25 +125,21 @@ export function ProductsArabic() {
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Button asChild variant="outline" size="sm">
-                    <a
-                      href="https://wa.me/5544984641899"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                    >
+                  <DialogTrigger asChild>
+                    <Button variant="outline" size="sm" type="button">
                       Comprar
-                    </a>
-                  </Button>
+                    </Button>
+                  </DialogTrigger>
                 </div>
 
-                <DialogContent className="max-w-6xl p-0 bg-graphite-deep text-ivory shadow-2xl">
-                  <div className="grid gap-6 rounded-[2rem] bg-[#0f0f0f] p-6 md:grid-cols-[1.8fr_1fr] items-start">
+                <DialogContent className="max-w-[95vw] sm:max-w-6xl p-0 bg-graphite-deep text-ivory shadow-2xl max-h-[95vh] overflow-hidden">
+                  <div className="grid gap-4 rounded-[2rem] bg-[#0f0f0f] p-4 sm:p-6 md:grid-cols-[1.8fr_1fr] items-start">
                     <div className="relative overflow-visible rounded-[1.75rem] bg-[#111]">
                       <Carousel className="relative">
                         <CarouselContent className="flex">
                           {product.images.map((image, index) => (
                             <CarouselItem key={index}>
-                              <div className="flex h-[480px] w-full items-center justify-center bg-[#111]">
+                              <div className="flex h-[320px] sm:h-[420px] md:h-[480px] w-full items-center justify-center bg-[#111] px-3 sm:px-6">
                                 <img
                                   src={image}
                                   alt={`${product.name} imagem ${index + 1}`}
@@ -159,7 +155,7 @@ export function ProductsArabic() {
                     </div>
 
                     <div className="relative">
-                      <div className="flex max-h-[480px] flex-col justify-between gap-6 overflow-y-auto rounded-[1.5rem] bg-graphite-deep p-6 pr-6 hide-scrollbar">
+                      <div className="flex max-h-[420px] sm:max-h-[480px] flex-col justify-between gap-6 overflow-y-auto rounded-[1.5rem] bg-graphite-deep p-4 sm:p-6 pr-6 hide-scrollbar">
                         <div className="space-y-6">
                           <DialogTitle className="text-3xl font-semibold text-ivory">{product.name}</DialogTitle>
                           <div className="overflow-hidden pr-4 text-sm leading-7 text-ivory/70">
@@ -170,9 +166,11 @@ export function ProductsArabic() {
                             )}
                           </div>
 
-                          <div className="mt-8 space-y-4 rounded-3xl border border-ivory/10 bg-[#131313] p-5 text-sm text-ivory/70">
-                            <p className="font-semibold text-ivory">Para adquirir nos chame em alguma das redes sociais.</p>
-                            <p>Promoção limitada.</p>
+                          <div className="mt-8 space-y-4 rounded-3xl border border-champagne/40 bg-champagne/5 p-6 text-sm text-ivory shadow-[0_12px_40px_-20px_rgba(255,205,150,0.45)]">
+                            <p className="text-base font-semibold uppercase tracking-[0.18em] text-champagne">
+                              Para adquirir nos chame em alguma das redes sociais.
+                            </p>
+                            <p className="text-sm font-medium text-ivory/80">Promoção limitada.</p>
                           </div>
 
                           <div className="mt-6 grid gap-3">
