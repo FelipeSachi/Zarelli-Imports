@@ -132,11 +132,11 @@ export function ProductsArabic() {
                   </DialogTrigger>
                 </div>
 
-                <DialogContent className="max-w-[95vw] sm:max-w-6xl p-0 bg-graphite-deep text-ivory shadow-2xl max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] overflow-hidden rounded-t-[2rem] sm:rounded-[2rem] pb-4 sm:pb-6">
+                <DialogContent className="max-w-[95vw] sm:max-w-6xl p-0 bg-graphite-deep text-ivory shadow-2xl max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] overflow-auto rounded-t-[2rem] sm:rounded-[2rem] pb-4 sm:pb-6">
                   <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-ivory/20" />
-                  <div className="grid gap-4 rounded-[2rem] bg-[#0f0f0f] p-4 sm:p-6 md:grid-cols-[1.8fr_1fr] items-start">
+                  <div className="grid min-h-0 gap-4 rounded-[2rem] bg-[#0f0f0f] p-4 sm:p-6 md:grid-cols-[1.8fr_1fr] items-start">
 
-                    <div className="relative overflow-hidden rounded-[1.75rem] bg-[#111] min-h-[240px] sm:min-h-[360px] md:min-h-[480px]">
+                    <div className="relative overflow-hidden rounded-[1.75rem] bg-[#111] min-h-[220px] sm:min-h-[320px] md:min-h-[420px]">
                       <Carousel className="relative">
                         <CarouselContent className="flex">
                           {product.images.map((image, index) => (
@@ -154,13 +154,13 @@ export function ProductsArabic() {
                         <CarouselNext className="hidden sm:absolute sm:flex right-4 top-1/2 -translate-y-1/2 z-20 rounded-full border border-ivory/20 bg-black/60 text-white hover:bg-black/80" />
                       </Carousel>
 
-                      <p className="mt-3 px-3 text-center text-xs uppercase tracking-[0.22em] text-ivory/60 sm:hidden">
+                      <p className="mt-3 px-3 text-center text-xs uppercase tracking-[0.22em] text-ivory/60">
                         arraste para ver mais imagens
                       </p>
                     </div>
 
                     <div className="relative">
-                      <div className="flex max-h-[calc(100vh-7rem)] md:max-h-[480px] flex-col justify-between gap-6 overflow-y-auto rounded-[1.5rem] bg-graphite-deep p-4 sm:p-6 pr-6 hide-scrollbar">
+                      <div className="flex min-h-0 flex-col justify-between gap-6 overflow-y-auto rounded-[1.5rem] bg-graphite-deep p-4 sm:p-6 pr-6 hide-scrollbar">
                         <div className="space-y-6">
                           <DialogTitle className="text-3xl font-semibold text-ivory">{product.name}</DialogTitle>
                           <div className="overflow-hidden pr-4 text-sm leading-7 text-ivory/70">
