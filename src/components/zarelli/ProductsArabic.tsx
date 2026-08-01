@@ -98,7 +98,7 @@ export function ProductsArabic() {
                       type="button"
                       className="relative block overflow-hidden rounded-[1.75rem] border border-ivory/10 bg-graphite-deep transition duration-500 hover:bg-graphite/90 hover:shadow-[0_0_0_1px_rgba(255,255,255,0.1)]"
                     >
-                      <div className="flex h-[320px] w-full items-center justify-center rounded-[1.5rem] border-2 border-white/90 bg-graphite-deep">
+                      <div className="flex h-[240px] sm:h-[320px] w-full items-center justify-center rounded-[1.5rem] border-2 border-white/90 bg-graphite-deep">
                         <img
                           src={product.icon}
                           alt={`${product.name} principal`}
@@ -132,15 +132,16 @@ export function ProductsArabic() {
                   </DialogTrigger>
                 </div>
 
-                <DialogContent className="max-w-[95vw] sm:max-w-6xl p-0 bg-graphite-deep text-ivory shadow-2xl max-h-[95vh] overflow-hidden">
+                <DialogContent className="max-w-[95vw] sm:max-w-6xl p-0 bg-graphite-deep text-ivory shadow-2xl max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-4rem)] overflow-hidden rounded-t-[2rem] sm:rounded-[2rem] pb-4 sm:pb-6">
+                  <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-ivory/20" />
                   <div className="grid gap-4 rounded-[2rem] bg-[#0f0f0f] p-4 sm:p-6 md:grid-cols-[1.8fr_1fr] items-start">
-                    <div className="relative overflow-visible rounded-[1.75rem] bg-[#111]">
+
+                    <div className="relative overflow-hidden rounded-[1.75rem] bg-[#111] min-h-[240px] sm:min-h-[360px] md:min-h-[480px]">
                       <Carousel className="relative">
                         <CarouselContent className="flex">
                           {product.images.map((image, index) => (
                             <CarouselItem key={index}>
-                              <div className="flex h-[320px] sm:h-[420px] md:h-[480px] w-full items-center justify-center bg-[#111] px-3 sm:px-6">
-                                <img
+                              <div className="flex h-[240px] sm:h-[360px] md:h-[480px] w-full items-center justify-center bg-[#111] px-3 sm:px-6">                                <img
                                   src={image}
                                   alt={`${product.name} imagem ${index + 1}`}
                                   className="h-full w-full max-w-full object-contain"
@@ -149,13 +150,17 @@ export function ProductsArabic() {
                             </CarouselItem>
                           ))}
                         </CarouselContent>
-                        <CarouselPrevious className="left-4 bg-foreground/10 text-white hover:bg-foreground/20" />
-                        <CarouselNext className="right-4 bg-foreground/10 text-white hover:bg-foreground/20" />
+                        <CarouselPrevious className="hidden sm:absolute sm:flex left-4 top-1/2 -translate-y-1/2 z-20 rounded-full border border-ivory/20 bg-black/60 text-white hover:bg-black/80" />
+                        <CarouselNext className="hidden sm:absolute sm:flex right-4 top-1/2 -translate-y-1/2 z-20 rounded-full border border-ivory/20 bg-black/60 text-white hover:bg-black/80" />
                       </Carousel>
+
+                      <p className="mt-3 px-3 text-center text-xs uppercase tracking-[0.22em] text-ivory/60 sm:hidden">
+                        arraste para ver mais imagens
+                      </p>
                     </div>
 
                     <div className="relative">
-                      <div className="flex max-h-[420px] sm:max-h-[480px] flex-col justify-between gap-6 overflow-y-auto rounded-[1.5rem] bg-graphite-deep p-4 sm:p-6 pr-6 hide-scrollbar">
+                      <div className="flex max-h-[calc(100vh-7rem)] md:max-h-[480px] flex-col justify-between gap-6 overflow-y-auto rounded-[1.5rem] bg-graphite-deep p-4 sm:p-6 pr-6 hide-scrollbar">
                         <div className="space-y-6">
                           <DialogTitle className="text-3xl font-semibold text-ivory">{product.name}</DialogTitle>
                           <div className="overflow-hidden pr-4 text-sm leading-7 text-ivory/70">
