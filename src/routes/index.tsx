@@ -3,7 +3,7 @@ import { Preloader } from "@/components/zarelli/Preloader";
 import { Navbar } from "@/components/zarelli/Navbar";
 import { Hero } from "@/components/zarelli/Hero";
 import { About } from "@/components/zarelli/About";
-import { Products } from "@/components/zarelli/Products";
+import { ProductsArabic as Products } from "@/components/zarelli/ProductsArabic";
 import { Encomenda } from "@/components/zarelli/Encomenda";
 import { Diferenciais } from "@/components/zarelli/Diferenciais";
 import { InstagramFeed } from "@/components/zarelli/InstagramFeed";

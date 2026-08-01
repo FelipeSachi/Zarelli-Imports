@@ -192,6 +192,16 @@
   border: 1px solid color-mix(in oklab, var(--champagne) 22%, transparent);
 }
 
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility reveal {
   opacity: 0;
   transform: translateY(18px);
