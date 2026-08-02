@@ -38,8 +38,8 @@ const products = [
     images: [ameerImage1, ameerImage2, ameerImage3, ameerImage4, ameerImage5],
     description:
       "Al Noble Ameer é um perfume sofisticado e versátil, perfeito para o dia a dia ou ocasiões especiais. Sua fragrância combina frescor, notas aromáticas e um fundo amadeirado, proporcionando uma sensação de limpeza, elegância e confiança. Conta com excelente fixação e ótima projeção, além de um frasco luxuoso que valoriza ainda mais o produto. É uma excelente opção para quem busca qualidade premium e ótimo custo-benefício.",
-    oldPrice: "179,90",
-    price: "159,90",
+    oldPrice: "200",
+    price: "179,90",
   },
   {
     id: "safeer",
@@ -49,8 +49,8 @@ const products = [
     images: [safeerImage1, safeerImage2, safeerImage3],
     description:
       "Al Noble Safeer é um perfume marcante e sofisticado, perfeito para quem busca uma fragrância elegante e diferenciada. Combina notas verdes, aromáticas e amadeiradas, criando um aroma fresco, refinado e de excelente presença. Possui ótima fixação e boa projeção, sendo ideal para uso diário ou ocasiões especiais. Seu frasco premium e o excelente custo-benefício fazem dele uma ótima escolha para quem aprecia perfumes árabes de alta qualidade.",
-    oldPrice: "179,90",
-    price: "159,90",
+    oldPrice: "200",
+    price: "179,90",
   },
   {
     id: "wazeer",
@@ -60,8 +60,8 @@ const products = [
     images: [wazeerImage1, wazeerImage2, wazeerImage3, wazeerImage4],
     description:
       "Al Noble Wazeer é um perfume sofisticado e marcante, ideal para quem busca elegância e presença. Possui excelente fixação e projeção, com uma fragrância que mistura frescor, doçura e notas amadeiradas de forma equilibrada. Perfeito para noites, ocasiões especiais e dias mais amenos, transmite luxo, confiança e personalidade. Seu frasco premium completa a experiência, tornando-o uma ótima escolha para quem deseja um perfume de alto desempenho e excelente custo-benefício.",
-    oldPrice: "179,90",
-    price: "159,90",
+    oldPrice: "200",
+    price: "179,90",
   },
   {
     id: "attar-wesal",
@@ -71,8 +71,8 @@ const products = [
     images: [attarImage1, attarImage2, attarImage3],
     description:
       "Attar Al Wesal é um perfume elegante e versátil, perfeito para quem busca sofisticação em qualquer ocasião. Sua fragrância une notas doces, florais e amadeiradas, proporcionando um aroma envolvente, moderno e agradável. Conta com excelente fixação e ótima projeção, garantindo longa duração na pele. Seu frasco luxuoso e o ótimo custo-benefício fazem dele uma excelente escolha para quem deseja um perfume árabe de alta qualidade.",
-    oldPrice: null,
-    price: null,
+    oldPrice: "189,90",
+    price: "169,90",
   },
 ];
 
