@@ -123,6 +123,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function ThemeToggle() {
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("theme") as "light" | "dark" | null;
@@ -138,11 +139,30 @@ function ThemeToggle() {
     window.localStorage.setItem("theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    const updateDialogState = () => {
+      const openDialog = document.querySelector('[role="dialog"][data-state="open"]');
+      setIsDialogOpen(Boolean(openDialog));
+    };
+
+    updateDialogState();
+
+    const observer = new MutationObserver(updateDialogState);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["data-state"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <button
       type="button"
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="fixed right-4 top-4 z-[70] flex h-11 w-11 items-center justify-center rounded-full border border-border/70 bg-background/90 text-foreground shadow-lg backdrop-blur transition hover:scale-105"
+      className={`fixed right-4 top-4 z-[70] flex h-11 w-11 items-center justify-center rounded-full border border-border/70 bg-background/90 text-foreground shadow-lg backdrop-blur transition hover:scale-105 ${isDialogOpen ? "pointer-events-none opacity-0" : "opacity-100"}`}
       aria-label="Alternar modo noturno"
     >
       {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
