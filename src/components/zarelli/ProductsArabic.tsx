@@ -40,6 +40,7 @@ const products = [
       "Al Noble Ameer é um perfume sofisticado e versátil, perfeito para o dia a dia ou ocasiões especiais. Sua fragrância combina frescor, notas aromáticas e um fundo amadeirado, proporcionando uma sensação de limpeza, elegância e confiança. Conta com excelente fixação e ótima projeção, além de um frasco luxuoso que valoriza ainda mais o produto. É uma excelente opção para quem busca qualidade premium e ótimo custo-benefício.",
     oldPrice: "200",
     price: "179,90",
+    soldOut: true,
   },
   {
     id: "safeer",
@@ -113,7 +114,13 @@ export function ProductsArabic() {
                   <div className="space-y-2">
                     <p className="text-xs uppercase tracking-[0.35em] text-ivory/60">{product.brand}</p>
                     <h3 className="text-xl font-semibold leading-tight text-ivory">{product.name}</h3>
-                    {product.price ? (
+                    {product.soldOut ? (
+                      <div className="flex items-center">
+                        <span className="inline-flex rounded-full border border-champagne/40 bg-champagne/10 px-3 py-1 text-sm font-semibold uppercase tracking-[0.2em] text-champagne">
+                          Esgotado
+                        </span>
+                      </div>
+                    ) : product.price ? (
                       <div className="flex items-end gap-3">
                         <span className="text-sm text-ivory/50 line-through">R$ {product.oldPrice}</span>
                         <span className="text-2xl font-semibold text-champagne">R$ {product.price}</span>
@@ -126,8 +133,13 @@ export function ProductsArabic() {
 
                 <div className="mt-6 flex flex-wrap gap-3">
                   <DialogTrigger asChild>
-                    <Button variant="outline" size="sm" type="button">
-                      Comprar
+                    <Button variant={product.soldOut ? "secondary" : "outline"} size="sm" type="button">
+                      {product.soldOut ? "Encomendar" : "Comprar"}
+                    </Button>
+                  </DialogTrigger>
+                  <DialogTrigger asChild>
+                    <Button variant="ghost" size="sm" type="button" className="border border-ivory/15 text-ivory hover:border-champagne hover:text-champagne">
+                      Saiba mais
                     </Button>
                   </DialogTrigger>
                 </div>
