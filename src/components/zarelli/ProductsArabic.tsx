@@ -132,11 +132,23 @@ export function ProductsArabic() {
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <DialogTrigger asChild>
-                    <Button variant={product.soldOut ? "secondary" : "outline"} size="sm" type="button">
-                      {product.soldOut ? "Encomendar" : "Comprar"}
-                    </Button>
-                  </DialogTrigger>
+                  {product.soldOut ? (
+                    <a
+                      href={`https://wa.me/5544984641899?text=${encodeURIComponent("Quero encomendar um perfume.")}`}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      <Button variant="secondary" size="sm" type="button">
+                        Encomendar
+                      </Button>
+                    </a>
+                  ) : (
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm" type="button">
+                        Comprar
+                      </Button>
+                    </DialogTrigger>
+                  )}
                   <DialogTrigger asChild>
                     <Button variant="ghost" size="sm" type="button" className="border border-ivory/15 text-ivory hover:border-champagne hover:text-champagne">
                       Saiba mais
