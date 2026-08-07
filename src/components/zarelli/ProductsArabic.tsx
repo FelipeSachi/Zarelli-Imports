@@ -1,10 +1,13 @@
 "use client";
 
 import { Instagram, MessageCircle } from "lucide-react";
+import { useState } from "react";
 import { Reveal } from "./Reveal";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 import ameerIcon from "@/assets/ameer/icone.png";
 import ameerImage1 from "@/assets/ameer/mudar1.png";
@@ -29,7 +32,20 @@ import attarImage1 from "@/assets/attar wesal/D_NQ_NP_2X_605179-MLB112761461783_
 import attarImage2 from "@/assets/attar wesal/D_NQ_NP_2X_805091-MLB111682729348_062026-F-perfume-al-wataniah-attar-al-wesal-parfum-m-100ml.png";
 import attarImage3 from "@/assets/attar wesal/D_NQ_NP_2X_875049-MLB111681661184_062026-F-perfume-al-wataniah-attar-al-wesal-parfum-m-100ml.png";
 
-const products = [
+type Product = {
+  id: string;
+  name: string;
+  brand: string;
+  icon: string;
+  images: string[];
+  description: string;
+  oldPrice: string;
+  price: string;
+  soldOut?: boolean;
+  buyLink?: string;
+};
+
+const products: Product[] = [
   {
     id: "ameer",
     name: "Lattafa Al Noble Ameer Edp Unissex 100ml",
@@ -41,6 +57,7 @@ const products = [
     oldPrice: "200",
     price: "179,90",
     soldOut: true,
+    buyLink: "https://invoice.infinitepay.io/felipesachi/0PD59d6ebI",
   },
   {
     id: "safeer",
@@ -52,6 +69,7 @@ const products = [
       "Al Noble Safeer é um perfume marcante e sofisticado, perfeito para quem busca uma fragrância elegante e diferenciada. Combina notas verdes, aromáticas e amadeiradas, criando um aroma fresco, refinado e de excelente presença. Possui ótima fixação e boa projeção, sendo ideal para uso diário ou ocasiões especiais. Seu frasco premium e o excelente custo-benefício fazem dele uma ótima escolha para quem aprecia perfumes árabes de alta qualidade.",
     oldPrice: "200",
     price: "179,90",
+    buyLink: "https://invoice.infinitepay.io/felipesachi/0PD59d6ebI",
   },
   {
     id: "wazeer",
@@ -63,6 +81,7 @@ const products = [
       "Al Noble Wazeer é um perfume sofisticado e marcante, ideal para quem busca elegância e presença. Possui excelente fixação e projeção, com uma fragrância que mistura frescor, doçura e notas amadeiradas de forma equilibrada. Perfeito para noites, ocasiões especiais e dias mais amenos, transmite luxo, confiança e personalidade. Seu frasco premium completa a experiência, tornando-o uma ótima escolha para quem deseja um perfume de alto desempenho e excelente custo-benefício.",
     oldPrice: "200",
     price: "179,90",
+    buyLink: "https://invoice.infinitepay.io/felipesachi/0PD59d6ebI",
   },
   {
     id: "attar-wesal",
@@ -78,6 +97,25 @@ const products = [
 ];
 
 export function ProductsArabic() {
+  const [buyerName, setBuyerName] = useState("");
+  const [buyerPhone, setBuyerPhone] = useState("");
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [purchaseOpen, setPurchaseOpen] = useState(false);
+
+  const handlePurchase = () => {
+    if (!selectedProduct || !selectedProduct.buyLink) return;
+
+    const whatsappMessage = encodeURIComponent(
+      `Olá, quero comprar ${selectedProduct.name}. Meu nome é ${buyerName} e meu telefone é ${buyerPhone}. Link de pagamento: ${selectedProduct.buyLink}`,
+    );
+    const whatsappUrl = `https://wa.me/5544984641899?text=${whatsappMessage}`;
+
+    window.open(whatsappUrl, "_blank");
+    setPurchaseOpen(false);
+    setBuyerName("");
+    setBuyerPhone("");
+  };
+
   return (
     <section id="produtos" className="bg-graphite px-6 py-28 md:py-40">
       <div className="mx-auto max-w-7xl">
@@ -142,6 +180,18 @@ export function ProductsArabic() {
                         Encomendar
                       </Button>
                     </a>
+                  ) : product.buyLink ? (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      type="button"
+                      onClick={() => {
+                        setSelectedProduct(product);
+                        setPurchaseOpen(true);
+                      }}
+                    >
+                      Comprar
+                    </Button>
                   ) : (
                     <DialogTrigger asChild>
                       <Button variant="outline" size="sm" type="button">
@@ -246,6 +296,57 @@ export function ProductsArabic() {
             </Dialog>
           ))}
         </div>
+
+        <Dialog open={purchaseOpen} onOpenChange={setPurchaseOpen}>
+          <DialogContent className="max-w-[95vw] sm:max-w-2xl p-6 bg-graphite-deep text-ivory shadow-2xl rounded-[2rem]">
+            <div className="mb-4 h-1.5 w-12 rounded-full bg-ivory/20" />
+            <DialogTitle className="text-3xl font-semibold text-ivory">Comprar {selectedProduct?.name}</DialogTitle>
+            <DialogDescription className="mt-2 text-sm leading-6 text-ivory/70">
+              Informe seu nome e telefone e depois confirme para abrir o WhatsApp com a mensagem pronta.
+            </DialogDescription>
+
+            <div className="mt-6 grid gap-4">
+              <div>
+                <Label htmlFor="buyer-name">Nome completo</Label>
+                <Input
+                  id="buyer-name"
+                  value={buyerName}
+                  onChange={(event) => setBuyerName(event.target.value)}
+                  placeholder="Seu nome"
+                />
+              </div>
+              <div>
+                <Label htmlFor="buyer-phone">Telefone</Label>
+                <Input
+                  id="buyer-phone"
+                  value={buyerPhone}
+                  onChange={(event) => setBuyerPhone(event.target.value)}
+                  placeholder="Ex: +55 48 9 9999-9999"
+                />
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-end">
+              <Button
+                variant="secondary"
+                size="sm"
+                type="button"
+                onClick={() => setPurchaseOpen(false)}
+              >
+                Fechar
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                type="button"
+                onClick={handlePurchase}
+                disabled={!buyerName.trim() || !buyerPhone.trim()}
+              >
+                Confirmar e pagar
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
 
         <div className="mt-14 rounded-[2rem] border border-champagne/20 bg-[#111] p-8 text-center text-sm text-ivory/70">
           <p className="font-semibold text-ivory">Para adquirir nos chame em alguma das redes sociais. promoção limitada.</p>
