@@ -106,7 +106,7 @@ export function ProductsArabic() {
     if (!selectedProduct || !selectedProduct.buyLink) return;
 
     const whatsappMessage = encodeURIComponent(
-      `Olá, quero comprar ${selectedProduct.name}. Meu nome é ${buyerName} e meu telefone é ${buyerPhone}. Link de pagamento: ${selectedProduct.buyLink}`,
+      `Olá, quero comprar ${selectedProduct.name}. Meu nome é ${buyerName}. Link de pagamento: ${selectedProduct.buyLink}`,
     );
     const whatsappUrl = `https://wa.me/5544984641899?text=${whatsappMessage}`;
 
@@ -306,19 +306,25 @@ export function ProductsArabic() {
             </DialogDescription>
 
             <div className="mt-6 grid gap-4">
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="buyer-name">Nome completo</Label>
                 <Input
                   id="buyer-name"
+                  type="text"
+                  autoComplete="name"
+                  autoFocus
                   value={buyerName}
                   onChange={(event) => setBuyerName(event.target.value)}
                   placeholder="Seu nome"
                 />
               </div>
-              <div>
+              <div className="space-y-2">
                 <Label htmlFor="buyer-phone">Telefone</Label>
                 <Input
                   id="buyer-phone"
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
                   value={buyerPhone}
                   onChange={(event) => setBuyerPhone(event.target.value)}
                   placeholder="Ex: +55 48 9 9999-9999"
